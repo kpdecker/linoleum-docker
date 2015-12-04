@@ -8,22 +8,28 @@ Inspired by IFTTT's [dash](https://github.com/IFTTT/dash) environment.
 
 ## Setup
 
+1. Install linoleum-docker
+
+  ```
+    npm install -g kpdecker/linoleum-docker
+  ```
+
 1. Install Docker
   http://docs.docker.com/engine/installation/mac/
 
-2. Create docker machine instance
+1. Create docker machine instance
 
   ```
     docker-machine create $name
   ```
 
-3. Configure local DNS and Docker environment
+1. Configure local DNS and Docker environment
 
   ```
     linoleum-docker start $name
   ```
 
-Note that step 3 must be performed any time the docker machine is restarted.
+  Note that this must be performed any time the docker machine is restarted.
 
 ## Link Names
 
