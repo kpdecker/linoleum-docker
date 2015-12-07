@@ -20,16 +20,20 @@ function start() {
 
   ROUTER_IP=`docker-machine inspect --format='{{ .Driver.Driver.IPAddress }}' $HOST`
   sudo mkdir -p /etc/resolver
-  echo "nameserver $ROUTER_IP" | sudo tee /etc/resolver/app
+  echo "nameserver $ROUTER_IP" | sudo tee /etc/resolver/internal
 
   ROUTER_CMD=`./node_modules/.bin/docker-hosts-watch route add`
   sudo bash -c "${ROUTER_CMD}"
 }
 
 function stop() {
-  eval "$(docker-machine env $HOST)"
+  sudo rm /etc/resolver/internal || true
 
-  sudo rm /etc/resolver/app || true
+  if [[ "$RUNNING" != "$HOST" ]]; then
+    return
+  fi
+
+  eval "$(docker-machine env $HOST)"
 
   ROUTER_CMD=`./node_modules/.bin/docker-hosts-watch route delete`
   sudo bash -c "${ROUTER_CMD}"

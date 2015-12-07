@@ -33,15 +33,15 @@ Inspired by IFTTT's [dash](https://github.com/IFTTT/dash) environment.
 
 ## Link Names
 
-All link names must be qualified with the `.app` domain to resolve properly in both docker and development environments. It's recommended that these also have a namespace applied to them to avoid conflicts in development. Ex from a docker-compose config:
+All link names must be qualified with the `.internal` domain to resolve properly in both docker and development environments. It's recommended that these also have a namespace applied to them to avoid conflicts in development. Ex from a docker-compose config:
 
 ```
   links:
-    - neo4j:neo4j.thisproject.app
+    - neo4j:neo4j.thisproject.internal
 ```
 
 In your application, you can then refernece the link url link any docker link, ex:
 
 ```
-  url: `http://neo4j.thisproject.app:7474`,
+  url: `http://neo4j.thisproject.internal:7474`,
 ```
