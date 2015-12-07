@@ -2,7 +2,12 @@
 
 set -e
 
-pushd ${BASH_SOURCE%/*}/..
+# Resolve the path to our node module content
+pushd `dirname $0` > /dev/null
+SCRIPTPATH=$(pwd -P)/$(readlink $(basename $0))
+popd > /dev/null
+
+pushd `dirname $SCRIPTPATH`/.. > /dev/null
 
 COMMAND=$1
 HOST=$2
@@ -12,6 +17,7 @@ RUNNING=`docker-machine ls --filter=state=Running -q --filter=name=$NAME`
 function start() {
   if [[ "$RUNNING" != "$HOST" ]]; then
     docker-machine start $HOST
+    sleep 5
   fi
 
   eval "$(docker-machine env $HOST)"
