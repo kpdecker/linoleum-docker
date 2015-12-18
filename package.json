@@ -1,8 +1,10 @@
 {
-  "name": "linoleum-docker",
+  "name": "@kpdecker/linoleum-docker",
   "version": "0.0.0",
   "description": "Environment for developing linoleum projects against docker.",
-  "bin": "./bin/linoleum-docker.sh",
+  "bin": {
+    "linoleum-docker": "./bin/linoleum-docker.sh"
+  },
   "author": "Kevin <kpdecker@gmail.com> (http://incaseofstairs.com/)",
   "license": "MIT",
   "dependencies": {
