@@ -26,7 +26,7 @@ function start() {
 
   echo "Running sudo"
 
-  ROUTER_IP=`docker-machine inspect --format='{{ .Driver.Driver.IPAddress }}' $HOST`
+  ROUTER_IP=`docker-machine inspect --format='{{ .Driver.IPAddress }}' $HOST`
   sudo mkdir -p /etc/resolver
   echo "nameserver $ROUTER_IP" | sudo tee /etc/resolver/internal
 
